@@ -1,0 +1,124 @@
+/* Variáveis locais de cor para fácil manutenção */
+$green-primary: #006437;
+$text-dark: #222222;
+$text-muted: #555555;
+$border-color: #e5e5e5;
+
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid $border-color;
+  padding: 1rem 2rem;
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Empurra a logo pra esquerda e o menu pra direita */
+    align-items: center;
+  }
+
+  /* Estilização da Marca / Logo */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+
+    .logo-img {
+      height: 42px;
+      width: auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: #1a1a1a;
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  /* Estilização dos Links do Menu */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+
+    a {
+      text-decoration: none;
+      color: $text-muted;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: $green-primary;
+      }
+
+      /* Estilo quando a rota está ativa (Linha verde embaixo) */
+      &.active {
+        color: $green-primary;
+        font-weight: 700;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background-color: $green-primary;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Ajuste para telas menores que 600px */
+    @media (max-width: 600px) {
+      flex-direction: column; /* Empilha a logo e os links */
+      gap: 1rem;
+      padding: 0.8rem 1rem;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+
+    @media (max-width: 600px) {
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+}
