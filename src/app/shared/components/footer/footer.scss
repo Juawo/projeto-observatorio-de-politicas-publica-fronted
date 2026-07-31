@@ -1,0 +1,154 @@
+.footer {
+  width: 100%;
+  background-color: #0d4226; /* Verde escuro do IFPI */
+  color: #ffffff;
+  padding: 3rem 0 1.5rem 0;
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Grid para as 4 colunas */
+  .footer-content {
+    display: grid;
+    /* Coluna da marca ocupa mais espaço (2fr) do que as outras (1fr) */
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 2.5rem;
+    align-items: start;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr 1fr; /* 2 colunas em tablets */
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr; /* 1 coluna no mobile */
+      gap: 2rem;
+    }
+  }
+
+  /* Estilização das colunas genéricas */
+  .footer-col {
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.6rem;
+
+        a {
+          color: #d1d5db; /* Cinza claro para os links */
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #ffffff;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  /* Coluna da Marca / Descrição */
+  .brand-col {
+    .logo img {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      color: #d1d5db;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      max-width: 320px;
+    }
+  }
+
+  /* Coluna das Redes Sociais */
+  .social-col {
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+
+      a {
+        color: #ffffff;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+          opacity: 0.8;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  /* Linha divisória */
+  .footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 2.5rem 0 1.5rem 0;
+  }
+
+  /* Rodapé inferior (Copyright) */
+  .footer-bottom {
+    text-align: center;
+
+    p {
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.brand-col {
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+
+    .brand-icon {
+      height: 48px; /* Ajuste a altura conforme necessário */
+      width: auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #ffffff; /* Texto branco no footer */
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #e5e7eb; /* Branco ligeiramente suavizado */
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  .description {
+    color: #d1d5db;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    max-width: 320px;
+  }
+}
