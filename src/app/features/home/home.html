@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
+  <h2>Publicações</h2>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+    @for (post of postExample; track post.id) {
+  <app-post-card [post]="post"></app-post-card>
+}
+  </div>
+</div>
