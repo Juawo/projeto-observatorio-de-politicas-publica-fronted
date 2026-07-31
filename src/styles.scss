@@ -11,3 +11,33 @@ html, body {
   overflow-x: hidden; /* Evita qualquer transbordo horizontal acidental */
   font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Define uma fonte padrão limpa */
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* Ouve a tela e empurra o footer para o rodapé */
+}
+
+/* src/styles.scss */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* O app-root precisa virar um container Flexbox ocupando no mínimo a altura total da tela (100vh) */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* A tag main (onde fica o router-outlet) vai esticar e empurrar o footer para o final */
+main, .main-content {
+  flex: 1;
+}
