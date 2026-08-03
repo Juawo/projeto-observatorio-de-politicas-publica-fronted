@@ -1,0 +1,178 @@
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem 1.5rem;
+
+  /* ==========================================================================
+     1. HERO SECTION
+     ========================================================================== */
+  .about-hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+
+    .hero-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #006437; /* Verde IFPI */
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      background-color: #e8f5e9;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 1.25rem;
+
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+  }
+
+  /* ==========================================================================
+     2. CONTENT SECTION (TEXTO)
+     ========================================================================== */
+  .about-section {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+
+    .content-block {
+      max-width: 900px;
+      margin: 0 auto;
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #374151;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  /* ==========================================================================
+     3. PILLARS GRID
+     ========================================================================== */
+  .pillars-section {
+    margin-bottom: 4rem;
+
+    .section-title {
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2.5rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @media (max-width: 850px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-card {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+
+      .icon-wrapper {
+        width: 52px;
+        height: 52px;
+        background-color: #e8f5e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem auto;
+
+        svg {
+          stroke: #006437;
+        }
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     4. CTA SECTION
+     ========================================================================== */
+  .cta-section {
+    background-color: #0d4226; /* Verde escuro do Footer */
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #ffffff;
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: #d1d5db;
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #006437;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        background-color: #f3f4f6;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
