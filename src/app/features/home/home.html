@@ -1,9 +1,68 @@
-<div style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
-  <h2>Publicações</h2>
+<div class="home-container">
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-    @for (post of postExample; track post.id) {
-  <app-post-card [post]="post"></app-post-card>
-}
-  </div>
+  <!-- 1. Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-subtitle">POLÍTICAS PÚBLICAS & ANTIRRACISMO</span>
+      <h1 class="hero-title">Observatório de Publicações</h1>
+      <p class="hero-description">
+        Repositório digital de produções acadêmicas, estudos e materiais sobre políticas públicas,
+        antirracismo e temas relevantes para a comunidade acadêmica e a sociedade.
+      </p>
+      <a routerLink="/sobre" class="hero-btn">
+        <!-- Ícone de Documento/Informação (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Sobre o projeto
+      </a>
+    </div>
+
+    <div class="hero-illustration">
+      <!-- Caso não tenha a imagem vetorial exata, pode colocar uma ilustrativa ou SVG -->
+      <img src="assets/images/hero-illustration.png" alt="Ilustração do Observatório">
+    </div>
+  </section>
+
+  <!-- 2. Publicações Section -->
+  <section class="posts-section">
+
+    <!-- Header da seção com título e filtro select -->
+    <div class="posts-header">
+      <h2 class="posts-title">Publicações</h2>
+
+      <div class="filter-wrapper">
+        <label for="category-select" class="filter-label">Filtrar por categoria:</label>
+        <select
+          id="category-select"
+          class="filter-select"
+          [(ngModel)]="selectedCategory"
+          (change)="onCategoryChange()">
+          <option value="All">Todas as categorias</option>
+          <option *ngFor="let category of categories.slice(1)" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Grade de Cards (Renderização condicional se houver resultados) -->
+    <div class="posts-grid" *ngIf="filteredPosts.length > 0; else noPosts">
+      <app-post-card *ngFor="let post of filteredPosts" [post]="post"></app-post-card>
+    </div>
+
+    <!-- Template para quando não houver publicações na categoria -->
+    <ng-template #noPosts>
+      <div class="no-posts-container">
+        <p>Nenhuma publicação encontrada para esta categoria.</p>
+      </div>
+    </ng-template>
+
+    <!-- Botão Ver mais publicações -->
+    <div class="load-more-wrapper">
+      <a routerLink="/posts" class="load-more-btn">
+        Ver mais publicações
+      </a>
+    </div>
+
+  </section>
+
 </div>
