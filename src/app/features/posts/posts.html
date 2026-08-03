@@ -1,0 +1,51 @@
+<div class="posts-page-container">
+
+  <!-- Cabeçalho da Página -->
+  <header class="page-header">
+    <h1 class="page-title">Publicações</h1>
+    <p class="page-description">
+      Explore todas as produções acadêmicas, pesquisas e materiais publicados pelo Observatório.
+    </p>
+  </header>
+
+  <!-- Barra de Filtros (Pesquisa por texto + Select de categoria) -->
+  <section class="filter-bar">
+
+    <!-- Input de busca por texto -->
+    <div class="search-box">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+      <input
+        type="text"
+        placeholder="Buscar por título ou autor..."
+        [(ngModel)]="searchTerm"
+        (input)="filterPosts()"
+      />
+    </div>
+
+    <!-- Select de categoria -->
+    <div class="category-select-wrapper">
+      <label for="category">Categoria:</label>
+      <select id="category" [(ngModel)]="selectedCategory" (change)="filterPosts()">
+        <option value="All">Todas as categorias</option>
+        <option *ngFor="let cat of categories.slice(1)" [value]="cat">
+          {{ cat }}
+        </option>
+      </select>
+    </div>
+
+  </section>
+
+  <!-- Grade de Resultados -->
+  <main class="posts-grid-container">
+    <div class="posts-grid" *ngIf="filteredPosts.length > 0; else noResults">
+      <app-post-card *ngFor="let post of filteredPosts" [post]="post"></app-post-card>
+    </div>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        <p>Nenhuma publicação encontrada para os filtros selecionados.</p>
+      </div>
+    </ng-template>
+  </main>
+
+</div>

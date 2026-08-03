@@ -1,0 +1,111 @@
+.posts-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem 1.5rem;
+
+  .page-header {
+    margin-bottom: 2.5rem;
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-description {
+      font-size: 1rem;
+      color: #4b5563;
+    }
+  }
+
+  /* Barra de Filtros */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+
+      svg {
+        stroke: #9ca3af;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 0.95rem;
+        color: #111827;
+
+        &::placeholder {
+          color: #9ca3af;
+        }
+      }
+    }
+
+    .category-select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      select {
+        padding: 0.6rem 2rem 0.6rem 1rem;
+        font-size: 0.9rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background-color: #ffffff;
+        color: #374151;
+        outline: none;
+        cursor: pointer;
+
+        &:focus {
+          border-color: #006437;
+        }
+      }
+    }
+  }
+
+  /* Grade de Cards */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 4rem 0;
+    color: #6b7280;
+    font-size: 1.1rem;
+  }
+}
