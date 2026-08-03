@@ -1,0 +1,200 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem 1.5rem;
+
+  /* ==========================================================================
+     1. HERO SECTION
+     ========================================================================== */
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: #f4f8f5; /* Fundo suave levemente esverdeado */
+    border-radius: 20px;
+    margin-bottom: 4rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column-reverse;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 550px;
+
+      @media (max-width: 900px) {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #006437; /* Verde IFPI */
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #1b4d3e; /* Verde escuro institucional */
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        background-color: #12352b;
+        transform: translateY(-2px);
+      }
+
+      svg {
+        stroke: #ffffff;
+      }
+    }
+
+    .hero-illustration {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        max-height: 320px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     2. POSTS SECTION
+     ========================================================================== */
+  .posts-section {
+    .posts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      @media (max-width: 650px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+
+    .posts-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .filter-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .filter-label {
+        font-size: 0.9rem;
+        color: #4b5563;
+        font-weight: 500;
+      }
+
+      .filter-select {
+        padding: 0.6rem 2.25rem 0.6rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #374151;
+        background-color: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          border-color: #006437;
+        }
+      }
+    }
+
+    /* Grid com 3 colunas fluida */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+
+      @media (max-width: 960px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .no-posts-container {
+      text-align: center;
+      padding: 3rem 0;
+      color: #6b7280;
+      font-size: 1.1rem;
+    }
+
+    /* Botão Ver mais publicações */
+    .load-more-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+
+      .load-more-btn {
+        background-color: #ffffff;
+        color: #006437;
+        border: 1.5px solid #006437;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+          background-color: #006437;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
