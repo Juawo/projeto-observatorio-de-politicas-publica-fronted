@@ -273,3 +273,25 @@
     }
   }
 }
+
+/* Responsividade para Mobile (Telas menores que 768px) */
+@media (max-width: 768px) {
+  .posts-section {
+    .section-header {
+      flex-direction: column;      /* Empilha o título e o filtro */
+      align-items: flex-start;     /* Alinha tudo à esquerda */
+      gap: 16px;                   /* Dá um respiro entre o título e o select */
+
+      .filter-wrapper {
+        width: 100%;               /* Faz o grupo do filtro ocupar a tela toda */
+        flex-direction: column;    /* Coloca o "Filtrar por categoria:" em cima do Select */
+        align-items: flex-start;
+        gap: 8px;
+
+        select {
+          width: 100%;             /* O botão do select ocupa 100% da largura no celular */
+        }
+      }
+    }
+  }
+}
