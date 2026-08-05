@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Necessário para usar o [(ngModel)] no select
-import { PostCard, Post } from '../../shared/components/post-card/post-card';
+import { FormsModule } from '@angular/forms';
+import { PostCard } from '../../shared/components/post-card/post-card';
+import { ObservatoryService } from '../../core/services/observatory';
+import { PublicacaoResponse, CategoriaResponse } from '../../core/models/observatory';
 
 @Component({
   selector: 'app-home',
@@ -14,82 +16,47 @@ import { PostCard, Post } from '../../shared/components/post-card/post-card';
 export class Home implements OnInit {
   selectedCategory: string = 'All';
 
-  // Categorias disponíveis para o select
-  categories: string[] = [
-    'All',
-    'Antirracismo',
-    'Educação',
-    'Saúde',
-    'Social',
-    'Sustentabilidade',
-    'Políticas Públicas'
-  ];
+  // Variáveis tipadas com os DTOs do backend
+  categorias: CategoriaResponse[] = [];
+  allPosts: PublicacaoResponse[] = [];
+  filteredPosts: PublicacaoResponse[] = [];
 
-  // Lista mockada de publicações (igual ao layout da imagem)
-  allPosts: Post[] = [
-    {
-      id: 1,
-      title: 'Ações afirmativas no IFPI: análise 2023–2024',
-      author: 'João Mendes',
-      date: '12 jun. 2025',
-      category: 'Antirracismo',
-      imageUrl: 'https://picsum.photos/400/250?random=1'
-    },
-    {
-      id: 2,
-      title: 'Políticas de permanência estudantil no campus',
-      author: 'Ana Costa',
-      date: '03 jun. 2025',
-      category: 'Educação',
-      imageUrl: 'https://picsum.photos/400/250?random=2'
-    },
-    {
-      id: 3,
-      title: 'Programa de saúde mental para servidores',
-      author: 'Carlos Lima',
-      date: '28 mai. 2025',
-      category: 'Saúde',
-      imageUrl: 'https://picsum.photos/400/250?random=3'
-    },
-    {
-      id: 4,
-      title: 'Inclusão de PcD: levantamento de acessibilidade',
-      author: 'Rita Sousa',
-      date: '20 mai. 2025',
-      category: 'Social',
-      imageUrl: 'https://picsum.photos/400/250?random=4'
-    },
-    {
-      id: 5,
-      title: 'Sustentabilidade no IFPI: práticas e desafios',
-      author: 'Marcos Silva',
-      date: '15 mai. 2025',
-      category: 'Sustentabilidade',
-      imageUrl: 'https://picsum.photos/400/250?random=5'
-    },
-    {
-      id: 6,
-      title: 'Gestão democrática e participação social',
-      author: 'Juliana Oliveira',
-      date: '10 mai. 2025',
-      category: 'Políticas Públicas',
-      imageUrl: 'https://picsum.photos/400/250?random=6'
-    }
-  ];
-
-  filteredPosts: Post[] = [];
+  constructor(private observatoryService: ObservatoryService) {}
 
   ngOnInit(): void {
-    this.filteredPosts = this.allPosts;
+    this.carregarCategorias();
+    this.carregarPublicacoes();
   }
 
-  // Função disparada ao alterar a opção no select
+  // Busca as categorias reais da API
+  carregarCategorias(): void {
+    this.observatoryService.getCategorias().subscribe({
+      next: (data) => {
+        this.categorias = data;
+      },
+      error: (err) => console.error('Erro ao carregar categorias:', err)
+    });
+  }
+
+  // Busca as publicações e exibe as 6 primeiras na Home
+  carregarPublicacoes(): void {
+    this.observatoryService.getPublicacoes().subscribe({
+      next: (data) => {
+        this.allPosts = data.slice(0, 6); // Limita para vitrine
+        this.filteredPosts = this.allPosts;
+      },
+      error: (err) => console.error('Erro ao carregar publicações:', err)
+    });
+  }
+
+  // Lógica de filtro reativo
   onCategoryChange(): void {
     if (this.selectedCategory === 'All') {
       this.filteredPosts = this.allPosts;
     } else {
       this.filteredPosts = this.allPosts.filter(
-        (post) => post.category === this.selectedCategory
+        // Aqui usamos 'categoria' para refletir o DTO
+        (post) => post.categoria === this.selectedCategory
       );
     }
   }

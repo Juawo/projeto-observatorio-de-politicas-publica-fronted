@@ -26,22 +26,21 @@
   <section class="posts-section">
 
     <!-- Header da seção com título e filtro select -->
-    <div class="posts-header">
-      <h2 class="posts-title">Publicações</h2>
+    <div class="filter-wrapper">
+      <label for="category-select" class="filter-label">Filtrar por categoria:</label>
+      <select
+        id="category-select"
+        class="filter-select"
+        [(ngModel)]="selectedCategory"
+        (change)="onCategoryChange()">
+        <!-- Opção padrão para mostrar tudo -->
+        <option value="All">Todas as categorias</option>
 
-      <div class="filter-wrapper">
-        <label for="category-select" class="filter-label">Filtrar por categoria:</label>
-        <select
-          id="category-select"
-          class="filter-select"
-          [(ngModel)]="selectedCategory"
-          (change)="onCategoryChange()">
-          <option value="All">Todas as categorias</option>
-          <option *ngFor="let category of categories.slice(1)" [value]="category">
-            {{ category }}
-          </option>
-        </select>
-      </div>
+        <!-- Opções dinâmicas puxando cat.nome -->
+        <option *ngFor="let cat of categorias" [value]="cat.nome">
+          {{ cat.nome }}
+        </option>
+      </select>
     </div>
 
     <!-- Grade de Cards (Renderização condicional se houver resultados) -->

@@ -27,7 +27,7 @@
       <label for="category">Categoria:</label>
       <select id="category" [(ngModel)]="selectedCategory" (change)="filterPosts()">
         <option value="All">Todas as categorias</option>
-        <option *ngFor="let cat of categories.slice(1)" [value]="cat">
+        <option *ngFor="let cat of categorias.slice(1)" [value]="cat">
           {{ cat }}
         </option>
       </select>
