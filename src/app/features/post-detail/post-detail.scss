@@ -1,0 +1,286 @@
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem 1.5rem;
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  /* ==========================================================================
+     1. HERO SECTION
+     ========================================================================== */
+  .post-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    background-color: #f3f4f6; /* Fundo cinza suave */
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .hero-text-content {
+      flex: 1.2;
+    }
+
+    .post-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #006437; /* Verde IFPI */
+      margin-bottom: 1rem;
+
+      svg {
+        stroke: #006437;
+      }
+    }
+
+    .post-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+
+      @media (max-width: 600px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .post-author {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+
+      svg {
+        stroke: #6b7280;
+      }
+    }
+
+    .hero-image-wrapper {
+      flex: 1;
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     2. CONTENT SECTION (Resumo + Download)
+     ========================================================================== */
+  .content-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+
+    @media (max-width: 850px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.7;
+    }
+
+    /* Card de Download do PDF */
+    .file-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        overflow: hidden;
+
+        .file-icon {
+          stroke: #006437;
+          flex-shrink: 0;
+        }
+
+        .file-details {
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+
+          .file-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #111827;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .file-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.2rem;
+          }
+        }
+      }
+
+      .download-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        color: #374151;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+          background-color: #f3f4f6;
+          border-color: #9ca3af;
+        }
+      }
+    }
+  }
+
+  /* ==========================================================================
+     3. RELATED SECTION (Linhas compactas)
+     ========================================================================== */
+  .related-section {
+    .related-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .related-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto auto;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #e5e7eb;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .category-tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        text-align: center;
+        background-color: #fef3c7;
+        color: #d97706;
+
+        &.tag-racismo, &.tag-antirracismo {
+          background-color: #fef3c7;
+          color: #d97706;
+        }
+      }
+
+      .related-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #111827;
+        text-decoration: none;
+
+        &:hover {
+          color: #006437;
+          text-decoration: underline;
+        }
+      }
+
+      .related-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        font-size: 0.8rem;
+        color: #6b7280;
+
+        .meta-author, .meta-date {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+
+          svg {
+            stroke: #9ca3af;
+          }
+        }
+      }
+
+      .related-arrow {
+        color: #374151;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          color: #006437;
+        }
+      }
+    }
+  }
+}
+
+
+.related-arrow {
+  color: #374151;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: #006437;
+    background-color: #f3f4f6;
+    transform: translateX(3px);
+  }
+}
+
+
+.state-container {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  font-size: 1.1rem;
+  color: #4b5563;
+
+  &.error {
+    color: #dc2626;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #006437;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}

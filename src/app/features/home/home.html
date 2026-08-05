@@ -1,0 +1,63 @@
+<div class="home-container">
+
+  <!-- 1. Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-subtitle">POLÍTICAS PÚBLICAS & ANTIRRACISMO</span>
+      <h1 class="hero-title">Observatório de Publicações</h1>
+      <p class="hero-description">
+        Repositório digital de produções acadêmicas, estudos e materiais sobre políticas públicas,
+        antirracismo e temas relevantes para a comunidade acadêmica e a sociedade.
+      </p>
+      <a routerLink="/about" class="hero-btn">
+        <!-- Ícone de Documento/Informação (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Sobre o projeto
+      </a>
+    </div>
+
+    <div class="hero-illustration">
+      <!-- Caso não tenha a imagem vetorial exata, pode colocar uma ilustrativa ou SVG -->
+      <img src="assets/logo-ifpi.png" alt="Ilustração do Observatório">
+    </div>
+  </section>
+
+  <!-- 2. Publicações Section -->
+  <!-- 2. Publicações Section -->
+  <section class="posts-section">
+
+    <!-- Header da seção igual ao Figma (Título na esquerda, Filtro na direita) -->
+    <div class="section-header">
+      <h2 class="section-title">Publicações</h2>
+
+      <div class="filter-wrapper">
+        <label for="category">Filtrar por categoria:</label>
+        <select id="category" [(ngModel)]="selectedCategory" (change)="filterPosts()">
+          <option value="All">Todas as categorias</option>
+          <option *ngFor="let cat of categorias" [value]="cat.nome">
+            {{ cat.nome }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Se não houver posts -->
+    <div class="no-results" *ngIf="filteredPosts.length === 0">
+      <p>Nenhuma publicação encontrada para esta categoria.</p>
+    </div>
+
+    <!-- Grid de Cards -->
+    <div class="cards-grid" *ngIf="filteredPosts.length > 0">
+      <app-post-card *ngFor="let post of filteredPosts" [post]="post"></app-post-card>
+    </div>
+
+    <!-- Botão Ver mais -->
+    <div class="load-more-wrapper">
+      <a routerLink="/posts" class="load-more-btn">
+        Ver mais publicações
+      </a>
+    </div>
+
+  </section>
+
+</div>
