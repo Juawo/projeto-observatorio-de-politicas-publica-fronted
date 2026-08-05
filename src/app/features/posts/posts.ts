@@ -1,8 +1,8 @@
-import { ObservatoryService } from './../../core/services/observatory';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PostCard } from '../../shared/components/post-card/post-card';
+import { ObservatoryService } from '../../core/services/observatory';
 import { PublicacaoResponse, CategoriaResponse } from '../../core/models/observatory';
 
 @Component({
@@ -16,12 +16,14 @@ export class Posts implements OnInit {
   searchTerm: string = '';
   selectedCategory: string = 'All';
 
-  // Usando os DTOs do backend
   categorias: CategoriaResponse[] = [];
   allPosts: PublicacaoResponse[] = [];
   filteredPosts: PublicacaoResponse[] = [];
 
-  constructor(private observatoryService: ObservatoryService) {}
+  constructor(
+    private observatoryService: ObservatoryService,
+    private cdr: ChangeDetectorRef // <-- O despertador do Angular
+  ) {}
 
   ngOnInit(): void {
     this.carregarCategorias();
@@ -30,7 +32,10 @@ export class Posts implements OnInit {
 
   carregarCategorias(): void {
     this.observatoryService.getCategorias().subscribe({
-      next: (data) => this.categorias = data,
+      next: (data) => {
+        this.categorias = data;
+        this.cdr.detectChanges();
+      },
       error: (err) => console.error('Erro ao carregar categorias:', err)
     });
   }
@@ -38,21 +43,19 @@ export class Posts implements OnInit {
   carregarPublicacoes(): void {
     this.observatoryService.getPublicacoes().subscribe({
       next: (data) => {
-        this.allPosts = data; // Aqui não tem o .slice(), mostra TUDO!
-        this.filteredPosts = data;
+        this.allPosts = data;
+        this.filterPosts();
+        this.cdr.detectChanges(); // Atualiza a tela na mesma hora
       },
       error: (err) => console.error('Erro ao carregar publicações:', err)
     });
   }
 
-  // Filtra por categoria E por termo digitado usando os campos do Java
   filterPosts(): void {
     this.filteredPosts = this.allPosts.filter((post) => {
-      // Usa post.categoria
       const matchesCategory =
         this.selectedCategory === 'All' || post.categoria === this.selectedCategory;
 
-      // Proteção extra caso titulo ou autor venham vazios/nulos
       const titleMatch = post.titulo
         ? post.titulo.toLowerCase().includes(this.searchTerm.toLowerCase())
         : false;
@@ -61,7 +64,7 @@ export class Posts implements OnInit {
         ? post.autor.toLowerCase().includes(this.searchTerm.toLowerCase())
         : false;
 
-      const matchesSearch = titleMatch || authorMatch;
+      const matchesSearch = this.searchTerm === '' || titleMatch || authorMatch;
 
       return matchesCategory && matchesSearch;
     });

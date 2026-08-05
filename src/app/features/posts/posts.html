@@ -23,15 +23,19 @@
     </div>
 
     <!-- Select de categoria -->
+   <!-- Select de categoria -->
     <div class="category-select-wrapper">
       <label for="category">Categoria:</label>
       <select id="category" [(ngModel)]="selectedCategory" (change)="filterPosts()">
         <option value="All">Todas as categorias</option>
-        <option *ngFor="let cat of categorias.slice(1)" [value]="cat">
-          {{ cat }}
+
+        <!-- Correção: Lendo cat.nome (antes estava cat puro, o que gera o object Object) e removemos o slice(1) -->
+        <option *ngFor="let cat of categorias" [value]="cat.nome">
+          {{ cat.nome }}
         </option>
+
       </select>
-    </div>
+    </div>  
 
   </section>
 

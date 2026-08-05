@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -16,46 +16,46 @@ import { PublicacaoResponse, CategoriaResponse } from '../../core/models/observa
 export class Home implements OnInit {
   selectedCategory: string = 'All';
 
-  // Variáveis tipadas com os DTOs do backend
   categorias: CategoriaResponse[] = [];
   allPosts: PublicacaoResponse[] = [];
   filteredPosts: PublicacaoResponse[] = [];
 
-  constructor(private observatoryService: ObservatoryService) {}
+  constructor(
+    private observatoryService: ObservatoryService,
+    private cdr: ChangeDetectorRef // <-- O responsável por acordar o HTML
+  ) {}
 
   ngOnInit(): void {
     this.carregarCategorias();
     this.carregarPublicacoes();
   }
 
-  // Busca as categorias reais da API
   carregarCategorias(): void {
     this.observatoryService.getCategorias().subscribe({
       next: (data) => {
         this.categorias = data;
+        this.cdr.detectChanges(); // Força a atualização do Select
       },
-      error: (err) => console.error('Erro ao carregar categorias:', err)
+      error: (err) => console.error('Erro nas categorias:', err)
     });
   }
 
-  // Busca as publicações e exibe as 6 primeiras na Home
   carregarPublicacoes(): void {
     this.observatoryService.getPublicacoes().subscribe({
       next: (data) => {
-        this.allPosts = data.slice(0, 6); // Limita para vitrine
-        this.filteredPosts = this.allPosts;
+        this.allPosts = data;
+        this.filterPosts();
+        this.cdr.detectChanges(); // Força a renderização dos cards imediatamente
       },
-      error: (err) => console.error('Erro ao carregar publicações:', err)
+      error: (err) => console.error('Erro nas publicações:', err)
     });
   }
 
-  // Lógica de filtro reativo
-  onCategoryChange(): void {
+  filterPosts(): void {
     if (this.selectedCategory === 'All') {
       this.filteredPosts = this.allPosts;
     } else {
       this.filteredPosts = this.allPosts.filter(
-        // Aqui usamos 'categoria' para refletir o DTO
         (post) => post.categoria === this.selectedCategory
       );
     }

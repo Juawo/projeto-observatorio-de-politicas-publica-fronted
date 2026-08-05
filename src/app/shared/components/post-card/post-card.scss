@@ -139,3 +139,35 @@
     }
   }
 }
+
+/* Estilo base da Tag de Categoria */
+.category-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px; /* Deixa com formato de pílula */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+
+  /* Cores padrão caso a categoria não tenha uma cor específica configurada */
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Cores específicas para as categorias geradas pelo back-end */
+/* A cor idêntica ao Figma (Antirracismo) para Ações Afirmativas */
+.tag-acoes-afirmativas {
+  background-color: #ffedd5; /* Fundo laranjinha */
+  color: #c2410c; /* Texto laranja forte */
+}
+
+/* Você pode criar cores novas para as outras categorias que vêm da sua API */
+.tag-educacao-antirracista {
+  background-color: #e0e7ff; /* Fundo azul claro */
+  color: #4338ca; /* Texto azul forte */
+}
+
+.tag-saude-da-populacao-negra {
+  background-color: #dcfce7; /* Fundo verde claro */
+  color: #15803d; /* Texto verde forte */
+}

@@ -1,6 +1,7 @@
 <article class="post-card">
   <div class="card-image">
-    <img [src]="post.imagem" [alt]="post.titulo">
+    <!-- Adicionado o fallback para o Picsum -->
+    <img [src]="post.imagem || 'https://picsum.photos/seed/' + post.id + '/400/250'" [alt]="post.titulo">
   </div>
 
   <div class="card-content">
