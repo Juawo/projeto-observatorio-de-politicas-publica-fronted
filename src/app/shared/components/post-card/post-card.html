@@ -1,24 +1,24 @@
 <article class="post-card">
   <div class="card-image">
-    <img [src]="post.imageUrl" [alt]="post.title">
+    <img [src]="post.imagem" [alt]="post.titulo">
   </div>
 
   <div class="card-content">
-    <span class="category-tag" [ngClass]="getCategoryClass(post.category)">
-      {{ post.category }}
+    <span class="category-tag" [ngClass]="getCategoryClass(post.categoria)">
+      {{ post.categoria }}
     </span>
 
-    <h3 class="card-title">{{ post.title }}</h3>
+    <h3 class="card-title">{{ post.titulo }}</h3>
 
     <div class="card-meta">
       <span class="meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        {{ post.author }}
+        {{ post.autor }}
       </span>
 
       <span class="meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-        {{ post.date }}
+        {{ post.dataPublicacao | date:'dd/MM/yyyy' }}
       </span>
     </div>
 

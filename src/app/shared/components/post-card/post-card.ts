@@ -1,36 +1,26 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-export interface Post {
-  id: number;
-  title: string;
-  author: string;
-  date: string;
-  category: string;
-  imageUrl: string;
-}
+import { PublicacaoResponse } from '../../../core/models/observatory';
 
 @Component({
   selector: 'app-post-card',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DatePipe],
   templateUrl: './post-card.html',
-  styleUrl: './post-card.scss',
+  styleUrl: './post-card.scss'
 })
+export class PostCard {
+  @Input() post!: PublicacaoResponse;
 
-export class PostCard{
-  @Input({ required: true }) post!: Post;
-
-  getCategoryClass(category: string): string {
-    if (!category) return 'tag-default';
-
-    const slug = category
+  // Adicione esta função para o HTML conseguir calcular a classe de cor da tag
+  getCategoryClass(categoria?: string): string {
+    if (!categoria) return 'tag-default';
+    const slug = categoria
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/\s+/g, '-');
-
-    return `tag-${slug}`
+    return `tag-${slug}`;
   }
 }
